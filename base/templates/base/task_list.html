@@ -1,0 +1,20 @@
+{%if user.is_authenticated%}
+{{user}}
+<form method='POST' action=" {% url "logout" %}">
+    {% csrf_token %}
+    <input type='submit' value='logout'>
+</form>
+{% else %}
+<a href="{% url "login" %}">login</a>
+{% endif %}
+<a href={% url "new-task" %}>add task</a>
+<table>
+    <tr>
+        <th>items</th>
+    </tr>
+    {% for task in tasks %}>
+    <tr>
+        <td>{{task.title}}</td>
+    </tr>
+    {% endfor %}
+</table>
